@@ -57,6 +57,6 @@ contract MemberNFT is ERC721Enumerable, ERC721URIStorage, Ownable{
      * - オーバーライド
      */
     function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
-        return tokenURI(tokenId);
+        return super.tokenURI(tokenId);
     }
 }
