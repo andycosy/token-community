@@ -16,6 +16,11 @@ contract MemberNFT is ERC721Enumerable, ERC721URIStorage, Ownable{
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    /**
+     * - 誰にどのtokenId,URIでNFTをMINTしたかを記録する
+     */
+    event TokenURIChanged(address indexed to, uint256 indexed tokenId, string uri);
+    
     constructor() ERC721("MemberNFT", "MEM"){}
 
     /**
@@ -26,6 +31,7 @@ contract MemberNFT is ERC721Enumerable, ERC721URIStorage, Ownable{
         uint256 newTokenId = _tokenIds.current();
         _mint(to, newTokenId);
         _setTokenURI(newTokenId, uri);
+        emit TokenURIChanged(to, newTokenId, uri);
     }
 
     /**
